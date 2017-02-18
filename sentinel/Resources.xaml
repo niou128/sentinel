@@ -4,8 +4,24 @@
                     xmlns:view="clr-namespace:sentinel.Views"
                     xmlns:viewModel="clr-namespace:sentinel.ViewModels">
 
+    <ResourceDictionary.MergedDictionaries>
+        <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+        <!-- Accent and AppTheme setting -->
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro.IconPacks;component/Themes/IconPacks.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <!-- Datatemplate-->
+    
     <DataTemplate DataType="{x:Type viewModel:TestViewModel}">
         <view:TestUserControl/>
     </DataTemplate>
 
+    
+    
 </ResourceDictionary>

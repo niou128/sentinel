@@ -2,14 +2,214 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+        
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="350" Width="525">
+
     <Grid>
         <Grid.RowDefinitions>
+            <!-- Menu d'édition -->
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="ContentRegion" />
+        <!--<ContentControl Grid.Row="0" prism:RegionManager.RegionName="ContentRegion" />-->
+
+
+        <!--#region Menu d'édition -->
+        <Grid  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               Visibility="{Binding MenuEditionVisibility}"
+               Background="{DynamicResource AccentColorBrush4}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Border Grid.Row="0"
+                BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" 
+                Background="{DynamicResource AccentColorBrush4}" Padding="5">
+                <DockPanel >
+                    <Button Width="32" Height="32" Margin="5 0 0 0" DockPanel.Dock="left"
+                        VerticalAlignment="Stretch" HorizontalAlignment="left"
+                        Command="{Binding AddTopCommand}"
+                        ToolTip="Choisir un dossier"
+                        Style="{DynamicResource MetroButton}">
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconModern Kind=FolderOpen}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                    <Button Width="32" Height="32" Margin="5 0 0 0" DockPanel.Dock="left"
+                        VerticalAlignment="Stretch" HorizontalAlignment="left"
+                        Command="{Binding AddBottomCommand}"
+                        ToolTip="Choisir un fichier"
+                        Style="{DynamicResource MetroButton}">
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconModern Kind=Page}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                </DockPanel>
+            </Border>
+
+
+            <Border Grid.Row="0" Grid.Column="1"
+                BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" 
+                Background="{DynamicResource AccentColorBrush4}" Padding="5" Margin="10 0 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="32" Height="32"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                        Command="{Binding MoveDownCommand}"
+                        ToolTip="Démarrer la surveillance"
+                        Style="{DynamicResource MetroButton}">
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconModern Kind=ControlPlay}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                    <Button Width="32" Height="32" Margin="10 0 0 0"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                        Command="{Binding MoveUpCommand}"
+                        ToolTip="Arréter la surveillance"
+                        Style="{DynamicResource MetroButton}"
+                        >
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconOcticons Kind=PrimitiveSquare}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                    <!--#region boutons catégorie-->
+                    <!--<Button Width="32" Height="32" Margin="10 0 0 0"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                        Command="{Binding HelpCommand}"
+                        ToolTip="Déplacer dans une catégorie"
+                        Style="{DynamicResource MetroButton}"
+                        Visibility="Collapsed">
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconModern Kind=Noentry}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+
+                    <Button Width="32" Height="32" Margin="10 0 0 0"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                        Command="{Binding HelpCommand}"
+                        ToolTip="Choisir le son d'alerte"
+                        Style="{DynamicResource MetroButton}"
+                        Visibility="Collapsed">
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconModern Kind=MusicSelect}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>-->
+                    <!--#endregion-->
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="0" Grid.Column="2"
+                BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" 
+                Background="{DynamicResource AccentColorBrush4}" Padding="5" Margin="10 0 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="32" Height="32" 
+                            VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                        Command="{Binding CopyCommand}"
+                        ToolTip="Choisir le son d'alerte"
+                        Style="{DynamicResource MetroButton}">
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconModern Kind=MusicSelect}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                    <Button Width="32" Height="32" Margin="10 0 0 0"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                        Command="{Binding DeleteCommand}"
+                        ToolTip="Choisir un fichier evt"
+                        Style="{DynamicResource MetroButton}">
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconModern Kind=InterfaceList}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="0" Grid.Column="3"
+                BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" 
+                Background="{DynamicResource AccentColorBrush4}" Padding="5" Margin="10 0 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="32" Height="32" 
+                            VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                        Command="{Binding CheckFormCommand}"
+                        ToolTip="Paramètres"
+                        Style="{DynamicResource MetroButton}">
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconModern Kind=Tools}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                    <Button Width="32" Height="32" Margin="10 0 0 0"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                        Command="{Binding ParamCommand}"
+                        ToolTip="Aide"
+                        Style="{DynamicResource MetroButton}">
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconModern Kind=Information}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                    <Button Width="32" Height="32" Margin="10 0 0 0"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                        Command="{Binding ExitCommand}"
+                        ToolTip="Quitter"
+                        Style="{DynamicResource MetroButton}">
+                        <Rectangle Width="18" Height="18" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Fill="{DynamicResource BlackBrush}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{iconPacks:PackIconModern Kind=ManWalk}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <!--endregion-->
+
         <ContentControl
         Grid.Row="1"
             Content="{Binding CurrentView, Mode=OneWay}" />
