@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="sentinel.Views.HamburgerMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <DataTemplate x:Key="HamburgerMenuItem" DataType="{x:Type controls:HamburgerMenuItem}">
+            <Grid Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ContentControl Grid.Column="0"
+                                Content="{Binding Tag}"
+                                Focusable="False"
+                                Foreground="White"
+                                IsTabStop="False" />
+                <TextBlock Grid.Column="1"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           Foreground="White"
+                           Text="{Binding Label}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HamburgerMenuImageItem" DataType="{x:Type controls:HamburgerMenuGlyphItem}">
+            <Grid Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Margin="12"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Source="{Binding Glyph}"
+                       Stretch="UniformToFill" />
+                <TextBlock Grid.Column="1"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           Foreground="White"
+                           Text="{Binding Label}" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+
+    <Grid>
+        <controls:HamburgerMenu x:Name="HamburgerMenuControl"
+                                SelectedIndex="1"
+                                Margin="20"
+                                Foreground="White"
+                                HamburgerWidth="48"
+                                Content="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=SelectedItem}"
+                                
+                                ItemTemplate="{StaticResource HamburgerMenuImageItem}"
+                                
+                                OptionsItemTemplate="{StaticResource HamburgerMenuItem}"
+                                PaneBackground="#FF444444">
+            <!--  Items  -->
+            <!--ItemClick="HamburgerMenu_OnItemClick"-->
+            <!--OptionsItemClick="HamburgerMenu_OnOptionsItemClick"-->
+            <controls:HamburgerMenu.ItemsSource>
+                <controls:HamburgerMenuItemCollection>
+                    <controls:HamburgerMenuGlyphItem Label="Ouvrir un fichier" >
+                        <controls:HamburgerMenuGlyphItem.Tag>
+                            <iconPacks:PackIconModern 
+                                Width="22"
+                                Height="22"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Kind="Page" />
+                        </controls:HamburgerMenuGlyphItem.Tag>
+                    </controls:HamburgerMenuGlyphItem>
+                    <!--<controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/BisonBadlandsChillin.png" Label="Bison badlands Chillin" />
+                    <controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/GiantSlabInOregon.png" Label="Giant slab in Oregon" />
+                    <controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/LakeAnnMushroom.png" Label="Lake Ann Mushroom" />-->
+                </controls:HamburgerMenuItemCollection>
+            </controls:HamburgerMenu.ItemsSource>
+
+            <!--  Options  -->
+            
+            <controls:HamburgerMenu.OptionsItemsSource>
+                <controls:HamburgerMenuItemCollection>
+                    <controls:HamburgerMenuGlyphItem Label="About">
+                        <controls:HamburgerMenuGlyphItem.Tag>
+                            <iconPacks:PackIconMaterial Width="22"
+                                                        Height="22"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Kind="Help" />
+                        </controls:HamburgerMenuGlyphItem.Tag>
+                    </controls:HamburgerMenuGlyphItem>
+                </controls:HamburgerMenuItemCollection>
+            </controls:HamburgerMenu.OptionsItemsSource>
+
+            <!--  Content  -->
+            <controls:HamburgerMenu.ContentTemplate>
+                <DataTemplate>
+                    <Grid x:Name="ContentGrid">
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition Height="48" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Background="#7A7A7A">
+                            <TextBlock x:Name="Header"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="24"
+                                       Foreground="White"
+                                       Text="{Binding Label}" />
+                        </Border>
+                        <controls:TransitioningContentControl Grid.Row="1"
+                                                              Content="{Binding Glyph}"
+                                                              RestartTransitionOnContentChange="True"
+                                                              Transition="Default">
+                            <controls:TransitioningContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding}" />
+                                </DataTemplate>
+                            </controls:TransitioningContentControl.ContentTemplate>
+                        </controls:TransitioningContentControl>-->
+                    </Grid>
+                </DataTemplate>
+            </controls:HamburgerMenu.ContentTemplate>
+        </controls:HamburgerMenu>
+    </Grid>
+</UserControl>

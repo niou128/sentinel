@@ -17,11 +17,17 @@
 
 
     <!-- Datatemplate-->
-    
+
     <DataTemplate DataType="{x:Type viewModel:TestViewModel}">
         <view:TestUserControl/>
     </DataTemplate>
 
-    
+    <!--<DataTemplate DataType="{x:Type viewModel:HamburgerMenuViewModel}">
+        <view:HamburgerMenu/>
+    </DataTemplate>-->
+
+    <DataTemplate DataType="{x:Type viewModel:AboutViewModel}">
+        <view:About/>
+    </DataTemplate>
     
 </ResourceDictionary>

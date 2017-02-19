@@ -13,20 +13,14 @@ namespace sentinel.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
+        #region Private Properties
+        #endregion
 
-        public object CurrentView
-        {
-            get { return _currentView; }
-            set
-            {
-                _currentView = value;
-                //RaisePropertyChanged(() => CurrentView);
-            }
-        }
-        private object _currentView; 
+        #region Public Properties
+        //public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
-        private string _title = "Sentinelle";
-
+        #region Binding Properties
         public string Title
         {
             get
@@ -39,23 +33,70 @@ namespace sentinel.ViewModels
             }
             set { SetProperty(ref _title, value); }
         }
+        private string _title = "Sentinelle";
 
-        public MainWindowViewModel()
+        public object CurrentView
         {
-            var test = new TestViewModel();
-            CurrentView = test;
+            get { return _currentView; }
+            set
+            {
+                 SetProperty(ref _currentView, value); 
+                //_currentView = value;
+                //RaisePropertyChanged("CurrentView");
+            }
         }
+        private object _currentView;
+
+        #endregion
 
         #region Commands
         public DelegateCommand ExitCommand { get { return _ExitCommand ?? (_ExitCommand = new DelegateCommand(Quit)); } }
         protected DelegateCommand _ExitCommand;
 
+        public DelegateCommand HelpCommand { get { return _HelpCommand ?? (_HelpCommand = new DelegateCommand(Help)); } }
+        protected DelegateCommand _HelpCommand;
+        
+
+        #endregion
+
+        #region Constructor
+        public MainWindowViewModel()
+        {
+            var test = new TestViewModel();
+            CurrentView = test;
+        }
         #endregion
 
         #region Private Methods
+        //private void RaisePropertyChanged(string propertyName)
+        //{
+        //    if (this.PropertyChanged != null)
+        //        this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        //}
+
+        /// <summary>
+        /// Quitte l'application
+        /// </summary>
         private void Quit()
         {
             Application.Current.Shutdown();
+        }
+
+        private void Help()
+        {
+            //CurrentView = new AboutViewModel();
+            AboutViewModel about = new AboutViewModel();
+
+            var t = new CustomFlyout()
+            {
+                Content = about,
+                Header = "",
+                IsModal = true,
+                IsPinned = false,
+                Position = "top"
+            };
+            StaticSentinelApp.Messenger.CustomFlyoutControl(t);
+            StaticSentinelApp.Messenger.SwitchCustomFlyout();
         }
         #endregion
     }
