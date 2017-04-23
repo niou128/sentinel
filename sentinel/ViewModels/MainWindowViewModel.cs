@@ -47,14 +47,25 @@ namespace sentinel.ViewModels
         }
         private object _currentView;
 
+        public bool AboutFlyoutIsOpen
+        {
+            get { return _AboutFlyoutIsOpen; }
+            set
+            {
+                SetProperty(ref _AboutFlyoutIsOpen, value);
+            }
+        }
+        private bool _AboutFlyoutIsOpen;
+
+
         #endregion
 
         #region Commands
         public DelegateCommand ExitCommand { get { return _ExitCommand ?? (_ExitCommand = new DelegateCommand(Quit)); } }
         protected DelegateCommand _ExitCommand;
 
-        public DelegateCommand HelpCommand { get { return _HelpCommand ?? (_HelpCommand = new DelegateCommand(Help)); } }
-        protected DelegateCommand _HelpCommand;
+        public DelegateCommand CommandAbout { get { return _CommandAbout ?? (_CommandAbout = new DelegateCommand(Help)); } }
+        protected DelegateCommand _CommandAbout;
         
 
         #endregion
@@ -62,6 +73,7 @@ namespace sentinel.ViewModels
         #region Constructor
         public MainWindowViewModel()
         {
+            AboutFlyoutIsOpen = false;
             var test = new TestViewModel();
             CurrentView = test;
         }
@@ -84,19 +96,7 @@ namespace sentinel.ViewModels
 
         private void Help()
         {
-            //CurrentView = new AboutViewModel();
-            AboutViewModel about = new AboutViewModel();
-
-            var t = new CustomFlyout()
-            {
-                Content = about,
-                Header = "",
-                IsModal = true,
-                IsPinned = false,
-                Position = "top"
-            };
-            StaticSentinelApp.Messenger.CustomFlyoutControl(t);
-            StaticSentinelApp.Messenger.SwitchCustomFlyout();
+            AboutFlyoutIsOpen = true;
         }
         #endregion
     }

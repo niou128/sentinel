@@ -92,12 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CustomFlyout.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="Interface\IMessenger.cs" />
-    <Compile Include="Interface\IMetroDialogSettings.cs" />
-    <Compile Include="Interface\IProgressDialogController.cs" />
-    <Compile Include="Message.cs" />
     <Compile Include="StaticSentinelApp.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\HamburgerMenuViewModel.cs" />
@@ -169,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

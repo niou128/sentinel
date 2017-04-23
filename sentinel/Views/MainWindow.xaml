@@ -10,7 +10,7 @@
         Title="{Binding Title}" Height="350" Width="525">
 
     <Controls:MetroWindow.Flyouts>
-        <Controls:FlyoutsControl x:Name="flyoutsControl">
+        <!--<Controls:FlyoutsControl x:Name="flyoutsControl">
             <Controls:Flyout Header="{Binding CustomFlyout.Header}"
                                     Theme="Inverse"
                                     Position="{Binding CustomFlyout.Position}"
@@ -129,21 +129,27 @@
                     </Button>
                 </Grid>
             </Controls:Flyout>
+        </Controls:FlyoutsControl>-->
+
+        <Controls:FlyoutsControl>
+            <Controls:Flyout Header="A propos"
+                             Position="Top"
+                             Width="200"
+                             x:Name="AboutWindow"
+                             Theme="Adapt"
+                             IsOpen="{Binding AboutFlyoutIsOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <!--<ContentControl Content="{Binding AboutViewModel}"/>-->
+                <TextBlock FontSize="24">Hello World</TextBlock>
+            </Controls:Flyout>
+            <!--<Controls:Flyout AnimateOpacity="True"
+                             AnimateOnPositionChange="True"
+                             Header="A propos"
+                             Background="#91000000"
+                             Width="350">
+                <TextBlock FontSize="24">Hello World</TextBlock>
+            </Controls:Flyout>-->
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -174,7 +180,7 @@
                 <DockPanel >
                     <Button Width="32" Height="32" Margin="5 0 0 0" DockPanel.Dock="left"
                         VerticalAlignment="Stretch" HorizontalAlignment="left"
-                        Command="{Binding AddTopCommand}"
+                        Command="{Binding CommandOpenFolder}"
                         ToolTip="Choisir un dossier"
                         Style="{DynamicResource MetroButton}">
                         <Rectangle Width="18" Height="18" 
@@ -187,7 +193,7 @@
                     </Button>
                     <Button Width="32" Height="32" Margin="5 0 0 0" DockPanel.Dock="left"
                         VerticalAlignment="Stretch" HorizontalAlignment="left"
-                        Command="{Binding AddBottomCommand}"
+                        Command="{Binding CommandOpenFile}"
                         ToolTip="Choisir un fichier"
                         Style="{DynamicResource MetroButton}">
                         <Rectangle Width="18" Height="18" 
@@ -208,7 +214,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Width="32" Height="32"
                             VerticalAlignment="Stretch" HorizontalAlignment="Right"
-                        Command="{Binding MoveDownCommand}"
+                        Command="{Binding CommandStart}"
                         ToolTip="Démarrer la surveillance"
                         Style="{DynamicResource MetroButton}">
                         <Rectangle Width="18" Height="18" 
@@ -221,7 +227,7 @@
                     </Button>
                     <Button Width="32" Height="32" Margin="10 0 0 0"
                             VerticalAlignment="Stretch" HorizontalAlignment="Right"
-                        Command="{Binding MoveUpCommand}"
+                        Command="{Binding CommandStop}"
                         ToolTip="Arréter la surveillance"
                         Style="{DynamicResource MetroButton}"
                         >
@@ -242,7 +248,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Width="32" Height="32" 
                             VerticalAlignment="Stretch" HorizontalAlignment="Right"
-                        Command="{Binding CopyCommand}"
+                        Command="{Binding CommandChoiseSong}"
                         ToolTip="Choisir le son d'alerte"
                         Style="{DynamicResource MetroButton}">
                         <Rectangle Width="18" Height="18" 
@@ -276,7 +282,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Width="32" Height="32" 
                             VerticalAlignment="Stretch" HorizontalAlignment="Right"
-                        Command="{Binding CheckFormCommand}"
+                        Command="{Binding CommandParameter}"
                         ToolTip="Paramètres"
                         Style="{DynamicResource MetroButton}">
                         <Rectangle Width="18" Height="18" 
@@ -289,7 +295,7 @@
                     </Button>
                     <Button Width="32" Height="32" Margin="10 0 0 0"
                             VerticalAlignment="Stretch" HorizontalAlignment="Right"
-                        Command="{Binding HelpCommand}"
+                        Command="{Binding CommandAbout}"
                         ToolTip="Aide"
                         Style="{DynamicResource MetroButton}">
                         <Rectangle Width="18" Height="18" 
@@ -316,7 +322,7 @@
                 </StackPanel>
             </Border>
         </Grid>
-        <!--endregion-->
+        <!--#endregion-->
 
         <ContentControl
         Grid.Row="1"
