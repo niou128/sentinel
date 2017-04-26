@@ -22,7 +22,7 @@ namespace sentinel.ViewModels
                 Assembly CurrentAssembly = Assembly.GetExecutingAssembly();
 
                 System.Diagnostics.FileVersionInfo fileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(CurrentAssembly.Location);
-                _Version = " - " + fileVersionInfo.FileVersion + " - " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                _Version = fileVersionInfo.FileVersion + " - " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 return _Version;
             }
         }

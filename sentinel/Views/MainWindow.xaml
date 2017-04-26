@@ -134,12 +134,12 @@
         <Controls:FlyoutsControl>
             <Controls:Flyout Header="A propos"
                              Position="Top"
-                             Width="200"
+                             
                              x:Name="AboutWindow"
                              Theme="Adapt"
                              IsOpen="{Binding AboutFlyoutIsOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                <!--<ContentControl Content="{Binding AboutViewModel}"/>-->
-                <TextBlock FontSize="24">Hello World</TextBlock>
+                <ContentControl Content="{Binding TestModel, Mode=OneWay}"/>
+                <!--<TextBlock FontSize="24">Hello World</TextBlock>-->
             </Controls:Flyout>
             <!--<Controls:Flyout AnimateOpacity="True"
                              AnimateOnPositionChange="True"

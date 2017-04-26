@@ -90,7 +90,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Enums.cs" />
-    <Compile Include="StaticSentinelApp.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\HamburgerMenuViewModel.cs" />
     <Compile Include="Views\About.xaml.cs">

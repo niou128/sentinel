@@ -47,6 +47,19 @@ namespace sentinel.ViewModels
         }
         private object _currentView;
 
+        public object TestModel
+        {
+            get { return _testModel; }
+            set
+            {
+                SetProperty(ref _testModel, value);
+                //_currentView = value;
+                //RaisePropertyChanged("CurrentView");
+            }
+        }
+        private object _testModel;
+        
+
         public bool AboutFlyoutIsOpen
         {
             get { return _AboutFlyoutIsOpen; }
@@ -76,6 +89,7 @@ namespace sentinel.ViewModels
             AboutFlyoutIsOpen = false;
             var test = new TestViewModel();
             CurrentView = test;
+            TestModel = new AboutViewModel();
         }
         #endregion
 
@@ -97,6 +111,7 @@ namespace sentinel.ViewModels
         private void Help()
         {
             AboutFlyoutIsOpen = true;
+            //CurrentView = new AboutViewModel();
         }
         #endregion
     }
