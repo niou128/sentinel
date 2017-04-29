@@ -6,6 +6,6 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              Background="{DynamicResource GrayBrush8}">
     <Grid>
-        <TextBlock Text="test"/>
+        <TextBlock Text="{Binding FilePath}"/>
     </Grid>
 </UserControl>

@@ -10,126 +10,6 @@
         Title="{Binding Title}" Height="350" Width="525">
 
     <Controls:MetroWindow.Flyouts>
-        <!--<Controls:FlyoutsControl x:Name="flyoutsControl">
-            <Controls:Flyout Header="{Binding CustomFlyout.Header}"
-                                    Theme="Inverse"
-                                    Position="{Binding CustomFlyout.Position}"
-                                    IsOpen="{Binding CustomFlyoutIsOpen}"
-                                    IsPinned="{Binding CustomFlyout.IsPinned}"
-                                    IsModal="{Binding CustomFlyout.IsModal}"
-                                    Content="{Binding CustomFlyout.Content}"
-                                    />
-
-            <Controls:Flyout Header="Paramètres"
-                                    Position="Top"
-                                    Theme="Inverse"
-                                    TitleVisibility="Visible"
-                                    IsPinned="False"
-                                    IsModal="True"
-                                    IsOpen="{Binding FlyOutParamsIsOpen}">
-                <WrapPanel Margin="5,50,5,5">
-                    <GroupBox Grid.Row="0" Grid.Column="0" Header="Contraste" Margin="5 5 0 0">
-                        <ListBox Grid.IsSharedSizeScope="True" ItemsSource="{Binding AppThemes, Mode=OneWay}">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel IsItemsHost="True" HorizontalAlignment="Stretch"/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition SharedSizeGroup="Content" />
-                                        </Grid.ColumnDefinitions>
-                                        <Button Command="{Binding ChangeAccentCommand}" Margin="5" HorizontalContentAlignment="Left">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Ellipse DockPanel.Dock="Left" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0"
-                                                     StrokeThickness="1" Stroke="{Binding BorderColorBrush, Mode=OneWay}" Fill="{Binding ColorBrush, Mode=OneWay}" />
-                                                <TextBlock DockPanel.Dock="Left" Text="{Binding Name, Mode=OneWay}" VerticalAlignment="Center" />
-                                            </StackPanel>
-                                        </Button>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </GroupBox>
-                    <GroupBox Grid.Row="0" Grid.Column="1" Header="Couleur" Margin="5 5 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                        <ListBox Grid.IsSharedSizeScope="True" ItemsSource="{Binding AccentColors, Mode=OneWay}" Padding="0 5 0 0"
-                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" >
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel IsItemsHost="True" HorizontalAlignment="Stretch"
-                                               Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type WrapPanel}}}"/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition SharedSizeGroup="Content" />
-                                        </Grid.ColumnDefinitions>
-                                        <Button Command="{Binding ChangeAccentCommand}" Margin="0 0 5 5">
-                                            <Grid HorizontalAlignment="Left" >
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="auto"/>
-                                                    <ColumnDefinition SharedSizeGroup="ContentText"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Ellipse Grid.Column="0" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0"
-                                                     Fill="{Binding ColorBrush, Mode=OneWay}" />
-                                                <TextBlock Grid.Column="1" Text="{Binding Name, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="30"/>
-                                            </Grid>
-                                        </Button>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </GroupBox>
-
-                </WrapPanel>
-            </Controls:Flyout>
-
-             <Controls:Flyout Position="Bottom"
-                             CloseButtonVisibility="Collapsed"
-                             TitleVisibility="Collapsed"
-                             IsPinned="True"
-                             IsModal="{Binding FlyOutNotificationIsModal}"
-                             IsOpen="{Binding FlyOutNotificationIsOpen}">
-                <Grid Margin="5" MaxHeight="100">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <TextBlock Grid.Column="0"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Margin="10,0,0,0"
-                                   SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
-                                   ScrollViewer.CanContentScroll="True"
-                                   ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                   Text="{Binding NotificationText}" 
-                                   TextAlignment="Left"
-                                   TextWrapping="Wrap"/>
-                    </ScrollViewer>
-                    <Button Grid.Column="1"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                FontFamily="Segoe UI Symbol"
-                                FontSize="12"
-                                Margin="5"
-                                Padding="7"
-                                Content="{Binding NotificationButtonText}"
-                            >
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <i:InvokeCommandAction Command="{Binding NotificationCloseCommand}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Button>
-                </Grid>
-            </Controls:Flyout>
-        </Controls:FlyoutsControl>-->
 
         <Controls:FlyoutsControl>
             <Controls:Flyout Header="A propos"
@@ -140,7 +20,6 @@
 
                 <ContentControl Grid.Row="1"
                                 Content="{Binding TestModel, Mode=OneWay}" />
-                <!--<TextBlock FontSize="24">Hello World</TextBlock>-->
             </Controls:Flyout>
             <!--<Controls:Flyout AnimateOpacity="True"
                              AnimateOnPositionChange="True"
@@ -194,7 +73,7 @@
                     </Button>
                     <Button Width="32" Height="32" Margin="5 0 0 0" DockPanel.Dock="left"
                         VerticalAlignment="Stretch" HorizontalAlignment="left"
-                        Command="{Binding CommandOpenFile}"
+                            Command="{Binding CommandOpenFile}"
                         ToolTip="Choisir un fichier"
                         Style="{DynamicResource MetroButton}">
                         <Rectangle Width="18" Height="18" 

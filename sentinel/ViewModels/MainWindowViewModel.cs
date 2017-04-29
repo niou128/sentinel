@@ -8,6 +8,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using MahApps.Metro.Controls.Dialogs;
+using Microsoft.Win32;
+using System.IO;
 
 namespace sentinel.ViewModels
 {
@@ -79,7 +81,9 @@ namespace sentinel.ViewModels
 
         public DelegateCommand CommandAbout { get { return _CommandAbout ?? (_CommandAbout = new DelegateCommand(Help)); } }
         protected DelegateCommand _CommandAbout;
-        
+
+        public DelegateCommand CommandOpenFile { get { return _CommandOpenFile ?? (_CommandOpenFile = new DelegateCommand(OpenFile)); } }
+        protected DelegateCommand _CommandOpenFile;
 
         #endregion
 
@@ -112,6 +116,14 @@ namespace sentinel.ViewModels
         {
             AboutFlyoutIsOpen = true;
             //CurrentView = new AboutViewModel();
+        }
+
+        private void OpenFile()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            { }
+                //txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
         }
         #endregion
     }
