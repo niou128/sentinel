@@ -73,6 +73,21 @@ namespace sentinel.ViewModels
         private bool _AboutFlyoutIsOpen;
 
 
+        public string OpenFilePath
+        {
+            get { return _OpenFilePath; }
+            set { SetProperty(ref _OpenFilePath, value); }
+        }
+        protected string _OpenFilePath;
+
+
+        public vmSurveillance Surveillance
+        {
+            get { return _Surveillance; }
+            set { SetProperty(ref _Surveillance, value); }
+        }
+        protected vmSurveillance _Surveillance;
+
         #endregion
 
         #region Commands
@@ -91,8 +106,8 @@ namespace sentinel.ViewModels
         public MainWindowViewModel()
         {
             AboutFlyoutIsOpen = false;
-            var test = new TestViewModel();
-            CurrentView = test;
+            Surveillance = new vmSurveillance();
+            CurrentView = Surveillance;
             TestModel = new AboutViewModel();
         }
         #endregion
@@ -122,7 +137,10 @@ namespace sentinel.ViewModels
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
-            { }
+            {
+                OpenFilePath = openFileDialog.FileName;
+                Surveillance.OpenFilePath = OpenFilePath;
+            }
                 //txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
         }
         #endregion
