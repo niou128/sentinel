@@ -100,6 +100,9 @@ namespace sentinel.ViewModels
         public DelegateCommand CommandOpenFile { get { return _CommandOpenFile ?? (_CommandOpenFile = new DelegateCommand(OpenFile)); } }
         protected DelegateCommand _CommandOpenFile;
 
+        public DelegateCommand CommandOpenFolder { get { return _CommandOpenFolder ?? (_CommandOpenFolder = new DelegateCommand(OpenFolder)); } }
+        protected DelegateCommand _CommandOpenFolder;
+
         #endregion
 
         #region Constructor
@@ -142,6 +145,11 @@ namespace sentinel.ViewModels
                 Surveillance.OpenFilePath = OpenFilePath;
             }
                 //txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
+        }
+
+        private void OpenFolder()
+        {
+
         }
         #endregion
     }
