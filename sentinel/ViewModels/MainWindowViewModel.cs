@@ -10,6 +10,7 @@ using System.Windows;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 using System.IO;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace sentinel.ViewModels
 {
@@ -149,7 +150,17 @@ namespace sentinel.ViewModels
 
         private void OpenFolder()
         {
-
+            if (CommonOpenFileDialog.IsPlatformSupported)
+            {
+                var folderSelectorDialog = new CommonOpenFileDialog();
+                folderSelectorDialog.EnsureReadOnly = true;
+                folderSelectorDialog.IsFolderPicker = true;
+                folderSelectorDialog.AllowNonFileSystemItems = false;
+                folderSelectorDialog.Multiselect = false;
+                folderSelectorDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                folderSelectorDialog.Title = "Project Location";
+                folderSelectorDialog.ShowDialog();
+            }
         }
         #endregion
     }
