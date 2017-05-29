@@ -144,8 +144,8 @@ namespace sentinel.ViewModels
             {
                 OpenFilePath = openFileDialog.FileName;
                 Surveillance.OpenFilePath = OpenFilePath;
+                Surveillance.OpenDirectoryPath = String.Empty;
             }
-                //txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
         }
 
         private void OpenFolder()
@@ -158,8 +158,11 @@ namespace sentinel.ViewModels
                 folderSelectorDialog.AllowNonFileSystemItems = false;
                 folderSelectorDialog.Multiselect = false;
                 folderSelectorDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                folderSelectorDialog.Title = "Project Location";
+                folderSelectorDialog.Title = "Choissisez un dossier";
                 folderSelectorDialog.ShowDialog();
+
+                Surveillance.OpenDirectoryPath = folderSelectorDialog.FileName;
+                Surveillance.OpenFilePath = String.Empty;
             }
         }
         #endregion
