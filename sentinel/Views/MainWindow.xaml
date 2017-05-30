@@ -167,7 +167,7 @@
                             Height="32"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Right"
-                            Command="{Binding CommandChoiseSong}"
+                            Command="{Binding CommandChoiceSong}"
                             ToolTip="Choisir le son d'alerte"
                             Style="{DynamicResource MetroButton}">
                         <Rectangle Width="18"

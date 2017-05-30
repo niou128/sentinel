@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Windows;
+using System.Windows.Media;
 
 namespace sentinel.ViewModels
 {
@@ -18,6 +20,7 @@ namespace sentinel.ViewModels
 
         #region Private Properties
         DateTime obLastRaise;
+        private MediaPlayer mediaPlayer;// = new MediaPlayer();
         #endregion
 
         #region Public Properties
@@ -37,7 +40,6 @@ namespace sentinel.ViewModels
         }
         protected string _OpenFilePath;
 
-
         public string OpenDirectoryPath
         {
             get { return _OpenDirectoryPath; }
@@ -50,7 +52,6 @@ namespace sentinel.ViewModels
             }
         }
         protected string _OpenDirectoryPath;
-
 
         public string ShowPath
         {
@@ -96,7 +97,6 @@ namespace sentinel.ViewModels
         }
         protected string _Statut;
 
-
         public bool IsSurveillanceActive
         {
             get { return _IsSurveillanceActive; }
@@ -104,6 +104,13 @@ namespace sentinel.ViewModels
         }
         protected bool _IsSurveillanceActive;
 
+
+        public string Song
+        {
+            get { return _Song; }
+            set { SetProperty(ref _Song, value); }
+        }
+        protected string _Song;
         #endregion
 
 
@@ -123,7 +130,11 @@ namespace sentinel.ViewModels
         /// <param name="e"></param>
         private void Observateur_Deleted(object sender, FileSystemEventArgs e)
         {
-            MessageBox.Show("Fichier supprimé");
+            if (DateTime.Now.Subtract(obLastRaise).TotalMilliseconds > 1000)
+            {
+                obLastRaise = DateTime.Now;
+                PlaySong();
+            }
         }
 
         /// <summary>
@@ -136,7 +147,7 @@ namespace sentinel.ViewModels
             if (DateTime.Now.Subtract(obLastRaise).TotalMilliseconds > 1000)
             {
                 obLastRaise = DateTime.Now;
-                MessageBox.Show("Fichier créé");
+                PlaySong();
             }
         }
 
@@ -147,6 +158,11 @@ namespace sentinel.ViewModels
         /// <param name="e"></param>
         private void Observateur_Changed(object sender, FileSystemEventArgs e)
         {
+            if (DateTime.Now.Subtract(obLastRaise).TotalMilliseconds > 1000)
+            {
+                obLastRaise = DateTime.Now;
+                PlaySong();
+            }
 
         }
 
@@ -157,7 +173,25 @@ namespace sentinel.ViewModels
         /// <param name="e"></param>
         private void Observateur_Renamed(object sender, RenamedEventArgs e)
         {
-            MessageBox.Show("Fichier renommé");
+            if (DateTime.Now.Subtract(obLastRaise).TotalMilliseconds > 1000)
+            {
+                obLastRaise = DateTime.Now;
+                PlaySong();
+            }
+        }
+
+        private void PlaySong()
+        {
+            if (String.IsNullOrEmpty(Song))
+            {
+                SystemSounds.Beep.Play();
+            }
+            else
+            {
+                mediaPlayer = new MediaPlayer();
+                mediaPlayer.Open(new Uri(Song));
+                mediaPlayer.Play();
+            }
         }
         #endregion
 

@@ -110,6 +110,9 @@ namespace sentinel.ViewModels
         public DelegateCommand CommandStop { get { return _CommandStop ?? (_CommandStop = new DelegateCommand(Stop)); } }
         protected DelegateCommand _CommandStop;
 
+        public DelegateCommand CommandChoiceSong { get { return _CommandChoiceSong ?? (_CommandChoiceSong = new DelegateCommand(ChoiceSong)); } }
+        protected DelegateCommand _CommandChoiceSong;
+
         #endregion
 
         #region Constructor
@@ -205,6 +208,16 @@ namespace sentinel.ViewModels
             else
             {
                 Surveillance.StopSurveillance();
+            }
+        }
+
+        private void ChoiceSong()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "MP3 files (*.mp3)|*.mp3|Wav files (*.wav)|*.wav|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Surveillance.Song = openFileDialog.FileName;
             }
         }
         #endregion
