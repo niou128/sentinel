@@ -185,6 +185,8 @@
     <Content Include="Resources\alarm.WAV">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\alarme1.wav" />
+    <Resource Include="Resources\surveillance.ico" />
     <Resource Include="surveillance.ico" />
     <Resource Include="Resources\surveillance.png" />
   </ItemGroup>

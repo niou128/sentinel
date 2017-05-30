@@ -113,6 +113,13 @@ namespace sentinel.ViewModels
         protected string _Song;
 
 
+        public System.IO.Stream DefaultSong
+        {
+            get { return _DefaultSong; }
+            set { SetProperty(ref _DefaultSong, value); }
+        }
+        protected System.IO.Stream _DefaultSong;
+
         public string Modification
         {
             get { return _Modification; }
@@ -128,6 +135,9 @@ namespace sentinel.ViewModels
             IsSurveillanceActive = false;
             Statut = "Aucune surveillance en cours";
             Modification = String.Empty;
+
+            DefaultSong = Properties.Resources.alarme1;
+
         }
         #endregion
 
@@ -224,15 +234,24 @@ namespace sentinel.ViewModels
 
         private void PlaySong()
         {
-            if (String.IsNullOrEmpty(Song))
+            try
             {
-                SystemSounds.Beep.Play();
+                if (String.IsNullOrEmpty(Song))
+                {
+                    //SystemSounds.Beep.Play();
+                    SoundPlayer player = new SoundPlayer(DefaultSong);
+                    player.Play();
+                }
+                else
+                {
+                    mediaPlayer = new MediaPlayer();
+                    mediaPlayer.Open(new Uri(Song));
+                    mediaPlayer.Play();
+                }
             }
-            else
+            catch (Exception )
             {
-                mediaPlayer = new MediaPlayer();
-                mediaPlayer.Open(new Uri(Song));
-                mediaPlayer.Play();
+                SystemSounds.Exclamation.Play();
             }
         }
         #endregion
