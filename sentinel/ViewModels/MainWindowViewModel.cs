@@ -189,17 +189,10 @@ namespace sentinel.ViewModels
                 return;
             }
 
-            Surveillance.IsSurveillanceActive = true;
-            Surveillance.observateur = new FileSystemWatcher();
-            Surveillance.observateur.Path = Surveillance.ShowPath;
-            Surveillance.observateur.Renamed += Observateur_Renamed;
-
+            Surveillance.StartSurveillance();
         }
 
-        private void Observateur_Renamed(object sender, RenamedEventArgs e)
-        {
-            MessageBox.Show("Fichier renommé");
-        }
+        
 
         private void Stop()
         {
@@ -211,8 +204,7 @@ namespace sentinel.ViewModels
 
             else
             {
-                Surveillance.IsSurveillanceActive = false;
-                Surveillance.observateur.Renamed -= Observateur_Renamed;
+                Surveillance.StopSurveillance();
             }
         }
         #endregion
