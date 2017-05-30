@@ -24,7 +24,11 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
+                <ScrollViewer MinHeight="100" MinWidth="200">
+                    <TextBlock Text="{Binding Modification}"/>
+                </ScrollViewer>
             </StackPanel>
+           
         </GroupBox>
     </Grid>
 </UserControl>

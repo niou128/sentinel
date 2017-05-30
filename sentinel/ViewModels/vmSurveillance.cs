@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
@@ -104,13 +105,20 @@ namespace sentinel.ViewModels
         }
         protected bool _IsSurveillanceActive;
 
-
         public string Song
         {
             get { return _Song; }
             set { SetProperty(ref _Song, value); }
         }
         protected string _Song;
+
+
+        public string Modification
+        {
+            get { return _Modification; }
+            set { SetProperty(ref _Modification, value); }
+        }
+        protected string _Modification;
         #endregion
 
 
@@ -119,6 +127,7 @@ namespace sentinel.ViewModels
         {
             IsSurveillanceActive = false;
             Statut = "Aucune surveillance en cours";
+            Modification = String.Empty;
         }
         #endregion
 
@@ -133,7 +142,14 @@ namespace sentinel.ViewModels
             if (DateTime.Now.Subtract(obLastRaise).TotalMilliseconds > 1000)
             {
                 obLastRaise = DateTime.Now;
+                //System.Threading.Thread.Sleep(100);
                 PlaySong();
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine(Modification);
+                sb.Append("Le fichier " + e.Name + " à été supprimé à " + DateTime.Now.ToShortTimeString());
+
+                Modification = sb.ToString();
             }
         }
 
@@ -147,7 +163,18 @@ namespace sentinel.ViewModels
             if (DateTime.Now.Subtract(obLastRaise).TotalMilliseconds > 1000)
             {
                 obLastRaise = DateTime.Now;
+                //System.Threading.Thread.Sleep(100);
                 PlaySong();
+
+                string CreatedFileName = e.Name;
+                FileInfo createdfile = new FileInfo(CreatedFileName);
+                string extension = createdfile.Extension;
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine(Modification);
+                sb.Append("Ajout du fichier " + CreatedFileName + " à " + DateTime.Now.ToShortTimeString());
+
+                Modification = sb.ToString();                
             }
         }
 
@@ -161,7 +188,14 @@ namespace sentinel.ViewModels
             if (DateTime.Now.Subtract(obLastRaise).TotalMilliseconds > 1000)
             {
                 obLastRaise = DateTime.Now;
+                //System.Threading.Thread.Sleep(100);
                 PlaySong();
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine(Modification);
+                sb.Append("Modification du fichier " + e.Name + " à " + DateTime.Now.ToShortTimeString());
+
+                Modification = sb.ToString();
             }
 
         }
@@ -176,7 +210,15 @@ namespace sentinel.ViewModels
             if (DateTime.Now.Subtract(obLastRaise).TotalMilliseconds > 1000)
             {
                 obLastRaise = DateTime.Now;
+               // System.Threading.Thread.Sleep(100);
                 PlaySong();
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine(Modification);
+                sb.Append("Le fichier " + e.OldName + " à été renommé en " + e.Name + " à "+ DateTime.Now.ToShortTimeString());
+
+                Modification = sb.ToString();
+
             }
         }
 
@@ -237,6 +279,7 @@ namespace sentinel.ViewModels
         {
             IsSurveillanceActive = false;
             Statut = "Aucune surveillance en cours";
+            Modification = String.Empty;
             observateur.EnableRaisingEvents = false;
             RemoveEventListener();
         }

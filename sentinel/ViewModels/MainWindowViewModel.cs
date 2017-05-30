@@ -36,7 +36,7 @@ namespace sentinel.ViewModels
             }
             set { SetProperty(ref _title, value); }
         }
-        private string _title = "Sentinelle";
+        private string _title = "Surveillance";
 
         public object CurrentView
         {
