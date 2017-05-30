@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace sentinel.ViewModels
@@ -14,6 +15,12 @@ namespace sentinel.ViewModels
             encours
         }
 
+        #region Public Properties
+        public FileSystemWatcher observateur;
+        #endregion
+
+
+
         #region Binding Properties
         public string OpenFilePath
         {
@@ -21,7 +28,8 @@ namespace sentinel.ViewModels
             set
             {
                 SetProperty(ref _OpenFilePath, value);
-                ShowPath = _OpenFilePath;
+                if (!String.IsNullOrEmpty(value))
+                    ShowPath = _OpenFilePath;
             }
         }
         protected string _OpenFilePath;
@@ -34,7 +42,8 @@ namespace sentinel.ViewModels
             set
             {
                 SetProperty(ref _OpenDirectoryPath, value);
-                ShowPath = _OpenDirectoryPath;
+                if(!String.IsNullOrEmpty(value))
+                    ShowPath = _OpenDirectoryPath;
             }
         }
         protected string _OpenDirectoryPath;
@@ -46,7 +55,13 @@ namespace sentinel.ViewModels
             {
                 return _ShowPath;
             }
-            set { SetProperty(ref _ShowPath, value); }
+            set
+            {
+                if(SetProperty(ref _ShowPath, value))
+                {
+                    TypePath = String.IsNullOrEmpty(OpenFilePath) ? "Chemin du dossier surveillé :" : "Chemin du fichier surveillé :";
+                }
+            }
         }
         protected string _ShowPath;
 
@@ -72,12 +87,20 @@ namespace sentinel.ViewModels
         {
             get
             {
-                 _Statut = "Inactif";
+                _Statut = "Inactif";
                 return _Statut;
             }
             set { SetProperty(ref _Statut, value); }
         }
         protected string _Statut;
+
+
+        public bool IsSurveillanceActive
+        {
+            get { return _IsSurveillanceActive; }
+            set { SetProperty(ref _IsSurveillanceActive, value); }
+        }
+        protected bool _IsSurveillanceActive;
 
         #endregion
 
@@ -85,7 +108,7 @@ namespace sentinel.ViewModels
         #region Constructor
         public vmSurveillance()
         {
-            OpenFilePath = "Ceci est un test";
+            IsSurveillanceActive = false;
         }
         #endregion
     }

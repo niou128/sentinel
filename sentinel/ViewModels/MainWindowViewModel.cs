@@ -104,6 +104,12 @@ namespace sentinel.ViewModels
         public DelegateCommand CommandOpenFolder { get { return _CommandOpenFolder ?? (_CommandOpenFolder = new DelegateCommand(OpenFolder)); } }
         protected DelegateCommand _CommandOpenFolder;
 
+        public DelegateCommand CommandStart { get { return _CommandStart ?? (_CommandStart = new DelegateCommand(Start)); } }
+        protected DelegateCommand _CommandStart;
+
+        public DelegateCommand CommandStop { get { return _CommandStop ?? (_CommandStop = new DelegateCommand(Stop)); } }
+        protected DelegateCommand _CommandStop;
+
         #endregion
 
         #region Constructor
@@ -137,6 +143,9 @@ namespace sentinel.ViewModels
             //CurrentView = new AboutViewModel();
         }
 
+        /// <summary>
+        /// Sélectionne le fichier à surveiller
+        /// </summary>
         private void OpenFile()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -148,6 +157,9 @@ namespace sentinel.ViewModels
             }
         }
 
+        /// <summary>
+        /// Sélectionne le dossier à surveiller
+        /// </summary>
         private void OpenFolder()
         {
             if (CommonOpenFileDialog.IsPlatformSupported)
@@ -163,6 +175,44 @@ namespace sentinel.ViewModels
 
                 Surveillance.OpenDirectoryPath = folderSelectorDialog.FileName;
                 Surveillance.OpenFilePath = String.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Démarre la surveillance
+        /// </summary>
+        private void Start()
+        {
+            if (String.IsNullOrEmpty(Surveillance.OpenFilePath) && String.IsNullOrEmpty(Surveillance.OpenDirectoryPath))
+            {
+                MessageBox.Show("Vous devez choisir un fichier ou un dossier avant de démarrer la surveillance", "Impossible de démarrer", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            Surveillance.IsSurveillanceActive = true;
+            Surveillance.observateur = new FileSystemWatcher();
+            Surveillance.observateur.Path = Surveillance.ShowPath;
+            Surveillance.observateur.Renamed += Observateur_Renamed;
+
+        }
+
+        private void Observateur_Renamed(object sender, RenamedEventArgs e)
+        {
+            MessageBox.Show("Fichier renommé");
+        }
+
+        private void Stop()
+        {
+            if (!Surveillance.IsSurveillanceActive)
+            {
+                MessageBox.Show("Aucune surveillance en cours", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            else
+            {
+                Surveillance.IsSurveillanceActive = false;
+                Surveillance.observateur.Renamed -= Observateur_Renamed;
             }
         }
         #endregion
