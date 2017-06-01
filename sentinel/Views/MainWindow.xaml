@@ -181,7 +181,7 @@
                             </Rectangle.OpacityMask>
                         </Rectangle>
                     </Button>
-                    <Button Width="32"
+                    <!--<Button Width="32"
                             Height="32"
                             Margin="10 0 0 0"
                             VerticalAlignment="Stretch"
@@ -200,7 +200,7 @@
                                              Visual="{iconPacks:PackIconModern Kind=InterfaceList}" />
                             </Rectangle.OpacityMask>
                         </Rectangle>
-                    </Button>
+                    </Button>-->
                 </StackPanel>
             </Border>
 
@@ -212,7 +212,7 @@
                     Padding="5"
                     Margin="10 0 0 0">
                 <StackPanel Orientation="Horizontal">
-                    <Button Width="32"
+                    <!--<Button Width="32"
                             Height="32"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Right"
@@ -229,7 +229,7 @@
                                              Visual="{iconPacks:PackIconModern Kind=Tools}" />
                             </Rectangle.OpacityMask>
                         </Rectangle>
-                    </Button>
+                    </Button>-->
                     <Button Width="32"
                             Height="32"
                             Margin="10 0 0 0"
